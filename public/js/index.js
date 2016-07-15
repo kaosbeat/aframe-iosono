@@ -18,8 +18,25 @@ function initSockets(){
         }
     });
     socket.on('iosono', function(data) {
-        console.log("Socket iosono:");
-        console.log(data);
+    //    console.log("Socket iosono:");
+        
+    if (data.channel == 4) {
+
+        console.log(data.position.x, data.position.y, data.position.z );
+        setPos(data.position.x, data.position.y, data.position.z - 5);
+    }
     });
 
 }
+
+///VR shizzle
+var box = document.querySelector('a-box');
+function setPos (x,y,z) {
+  box.setAttribute('position', {
+    x: x,
+    y: y,
+    z: z
+  });
+}
+
+
