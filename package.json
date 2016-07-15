@@ -1,0 +1,11 @@
+{
+  "name": "websocket-template",
+  "version": "0.0.0",
+  "description": "",
+  "dependencies": {
+    "express": "~4.12.3",
+    "httpreq": "^0.4.22",
+    "pug": "^2.0.0-beta3",
+    "socket.io": "^1.4.8"
+  }
+}
