@@ -23,7 +23,7 @@ function initSockets(){
     if (data.channel == 4) {
 
         console.log(data.position.x, data.position.y, data.position.z );
-        setPos(data.position.x, data.position.y, data.position.z - 5);
+        setPos(data.position.x-5, data.position.y, data.position.z - 10);
     }
     });
 
