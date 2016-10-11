@@ -89,6 +89,7 @@ AFRAME.registerComponent('multiLines',{
     position: { default: {x:0, y:2 ,z:0}},
     size: {default: {x:1, y:1 ,z:1}},
     multisize: {default: 4},
+
     path: {default: []},
     color: {default: '#34521a'}
   },
@@ -117,11 +118,16 @@ AFRAME.registerComponent('multiLines',{
   },
   // ...
   tick: function() {
+    if (this.data.size.x < 5) {
+      this.data.size.x = this.data.size.x+0.01;
+    } else {
+      this.data.size.x = 0;
+    }
     var material = new THREE.LineBasicMaterial({
       color: this.data.color
     });
     for (var i = 0; i < this.data.multisize; i++) {
-      this.data.path[i] = { x: Math.random()*15, y: Math.random()*10, z: Math.random()*14 }
+      this.data.path[i] = { x: Math.random()*15*this.data.size.x, y: Math.random()*10*this.data.size.x, z: Math.random()*14*this.data.size.x }
     }
     var geometry = new THREE.Geometry();
     this.data.path.forEach(function (vec3) {
