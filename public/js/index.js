@@ -7,7 +7,7 @@ $(function() {
 // SOCKET.IO
 function initSockets(){
     //socket = io.connect('http://10.100.13.17:3000');
-   socket = io.connect('http://192.168.1.147:3000');
+   socket = io.connect('http://192.168.1.145:3000');
 // socket = io.connect('http://10.125.119.152:3000');
     socket.on('hello', function(data) {
         console.log("Socket hello:");
@@ -34,7 +34,10 @@ function initSockets(){
 
 ///VR shizzle
 var clap = document.querySelector('[sound]');
+
+
 var box = document.querySelector('a-box');
+
 function setPos (x,y,z) {
   box.setAttribute('position', {
     x: x,
@@ -65,7 +68,7 @@ $(document).keypress(function(e) {
 
 
 $("#happy-face").append("<a-entity mixin='red' line='path: 1 1 0, 1 0.5 0, 1 0 0'>")
-
+$("#happy-face").append("<a-entity multiLines='multisize: 40'>")
 
 
 

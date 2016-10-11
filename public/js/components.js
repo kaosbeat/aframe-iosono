@@ -48,9 +48,7 @@ AFRAME.registerComponent('line', {
 
 AFRAME.registerComponent('bass', {
 	schema: {
-    	color: { 	default: 0x000333, 
-    				parse: function(value) { return value } 
-    			},
+    	color: { 	default: '#000333'},
     	position: { default: {x:0, y:2 ,z:0}},
     	size: {default: {x:1, y:1 ,z:1}}
 	},
@@ -63,18 +61,19 @@ AFRAME.registerComponent('bass', {
     	// console.log(mesh)
 		// seed(mesh);
     	// el.getOrCreateObject3D('mesh', THREE.Mesh);
+      console.log(this.data);
 	},
 	update: function (){
 		// setObject3D('mesh'
-		var material = new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff });
-	  	// var color1 = new.THREE.Color(this.data.color);
+		// var material = new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff });
+	  	var color1 = new THREE.Color(this.data.color);
 		var geometry = new THREE.BoxGeometry( 3, 3.15, 2 );
-		// var material = new THREE.MeshLambertMaterial(
-		// 	{ color: 0x345467 }
-		// 	);
+		var material = new THREE.MeshLambertMaterial(
+			{ color: color1 }
+			);
 		console.log(this.data.color);
 		material.color = this.data.color;
-		material.color = 0x345467;
+		// material.color = 0x345467;
 		this.el.setObject3D('mesh', new THREE.Mesh(geometry, material));
 	},
 	remove: function () {
@@ -84,5 +83,42 @@ AFRAME.registerComponent('bass', {
 
 });
 
+
+AFRAME.registerComponent('multiLines',{
+  schema: {
+    position: { default: {x:0, y:2 ,z:0}},
+    size: {default: {x:1, y:1 ,z:1}},
+    multisize: {default: 4},
+    path: {default: []},
+    color: {default: '#34521a'}
+  },
+
+  init: function() {
+    //seed data
+    for (var i = 0; i < this.data.multisize; i++) {
+      this.data.path[i] = { x: Math.random()*0.5, y: Math.random()*10, z: Math.random()*4 }
+    }
+    console.log(this.data);
+  },
+  update: function() {
+        // Set color with material.
+    var material = new THREE.LineBasicMaterial({
+      color: this.data.color
+    });
+    // Add vertices to geometry.
+    var geometry = new THREE.Geometry();
+    this.data.path.forEach(function (vec3) {
+      geometry.vertices.push(
+        new THREE.Vector3(vec3.x, vec3.y, vec3.z)
+      );
+    });
+    // Apply mesh.
+    this.el.setObject3D('mesh', new THREE.Line(geometry, material));
+  },
+  // ...
+  tick: function() {
+
+  }
+});
 
 
