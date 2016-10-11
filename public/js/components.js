@@ -98,7 +98,7 @@ AFRAME.registerComponent('multiLines',{
     for (var i = 0; i < this.data.multisize; i++) {
       this.data.path[i] = { x: Math.random()*0.5, y: Math.random()*10, z: Math.random()*4 }
     }
-    console.log(this.data);
+    ;
   },
   update: function() {
         // Set color with material.
@@ -117,7 +117,21 @@ AFRAME.registerComponent('multiLines',{
   },
   // ...
   tick: function() {
-
+    var material = new THREE.LineBasicMaterial({
+      color: this.data.color
+    });
+    for (var i = 0; i < this.data.multisize; i++) {
+      this.data.path[i] = { x: Math.random()*15, y: Math.random()*10, z: Math.random()*14 }
+    }
+    var geometry = new THREE.Geometry();
+    this.data.path.forEach(function (vec3) {
+      geometry.vertices.push(
+        new THREE.Vector3(vec3.x, vec3.y, vec3.z)
+      );
+    });
+    // Apply mesh.
+    this.el.setObject3D('mesh', new THREE.Line(geometry, material));
+    // console.log(this.data);
   }
 });
 
