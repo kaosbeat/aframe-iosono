@@ -7,11 +7,11 @@ html
     meta(name='apple-mobile-web-app-capable', content='yes')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
     link(rel='stylesheet', href='css/main.css')
-    script(src="https://aframe.io/releases/0.2.0/aframe.min.js")
+    script(src="lib/aframe.min.js")
     script(src='lib/jquery/jquery-2.1.3.min.js')
     script(src="/socket.io/socket.io.js")
     
-    script.
+    //- script.
       /*Data = {};
       console.log("wadde");
       Data.user = !{JSON.stringify(user)};
@@ -30,7 +30,7 @@ html
         a-mixin(id="red" line="color: #E20049")
       a-entity(light="color: #AFA; intensity: 1.5" position="-1 1 10")
       a-entity(light="color: #F0A; intensity: 0.5" position="1 -1 0")
-      a-entity(position="-10 2 -5" sound="src: mp3/clap013.mp3")
+      //- a-entity(position="-10 2 -5" sound="src: mp3/clap013.mp3") ###broken in aframe0.3
       
       a-entity(id="happy-face" position="0 0 -19")
         a-entity(geometry="primitive: circle; radius: 10; segments: 64" material="color: #F79F24" position="0 0 -1")

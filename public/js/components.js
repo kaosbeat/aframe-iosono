@@ -124,7 +124,8 @@ AFRAME.registerComponent('multiLines',{
       this.data.size.x = 0;
     }
     var material = new THREE.LineBasicMaterial({
-      color: this.data.color
+      color: this.data.color,
+      linewidth: 10
     });
     for (var i = 0; i < this.data.multisize; i++) {
       this.data.path[i] = { x: Math.random()*15*this.data.size.x, y: Math.random()*10*this.data.size.x, z: Math.random()*14*this.data.size.x }
@@ -141,4 +142,81 @@ AFRAME.registerComponent('multiLines',{
   }
 });
 
+
+
+AFRAME.registerComponent('multiBoxes',{
+  schema: {
+    position: { default: {x:10, y:2 ,z:0}},
+    size: {default: {x:1, y:1 ,z:1}},
+    multisize: {default: 4},
+
+    path: {default: []},
+    color: {default: '#34521a'}
+  },
+
+  init: function() {
+    //seed data
+    for (var i = 0; i < this.data.multisize; i++) {
+      this.data.path[i] = { x: Math.random()*0.5, y: Math.random()*10, z: Math.random()*4 }
+    }
+    ;
+  },
+  update: function() {
+    geom = new THREE.CubeGeometry( 5, 5, 5 );
+
+    cubes = new THREE.Object3D();
+    range = 10;
+    for(var i = 0; i < 10; i++ ) {
+            var grayness = Math.random() * 1,
+                    mat = new THREE.MeshBasicMaterial(),
+                    cube = new THREE.Mesh( geom, mat );
+            mat.color.setRGB( grayness, grayness, grayness );
+            cube.position.set( range * (0.5 - Math.random()), range * (0.5 - Math.random()), range * (0.5 - Math.random()) );
+            cube.rotation.set( 3*Math.random(), Math.random(), Math.random());
+            // cube.grayness = grayness; // *** NOTE THIS
+            cubes.add( cube );
+            
+    }
+
+    this.el.setObject3D('mesh', cubes);
+
+  },
+  // ...
+  // tick: function() {
+  //   console.log(this.el);
+  //   for(cube in this.el)
+  // //   if (this.data.size.x < 5) {
+  // //     this.data.size.x = this.data.size.x+0.01;
+  // //   } else {
+  // //     this.data.size.x = 0;
+  // //   }
+  // //   var material = new THREE.LineBasicMaterial({
+  // //     color: this.data.color
+  // //   });
+  // //   for (var i = 0; i < this.data.multisize; i++) {
+  // //     this.data.path[i] = { x: Math.random()*15*this.data.size.x, y: Math.random()*10*this.data.size.x, z: Math.random()*14*this.data.size.x }
+  // //   }
+  // //   var geometry = new THREE.Geometry();
+  // //   this.data.path.forEach(function (vec3) {
+  // //     geometry.vertices.push(
+  // //       new THREE.Vector3(vec3.x, vec3.y, vec3.z)
+  // //     );
+  // //   });
+  // //   // Apply mesh.
+  // //   this.el.setObject3D('mesh', new THREE.Line(geometry, material));
+
+  // //   var material = new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff });
+  // //   var geometry = new THREE.BoxGeometry( 3, 3.15, 2 );
+  // //   // var material = new THREE.MeshLambertMaterial(
+  // //   //   { color: color1 }
+  // //   //   );
+  // //   // console.log(this.data.color);
+  // //   material.color = this.data.color;
+  // //   // material.color = 0x345467;
+  // //   this.el.setObject3D('mesh', new THREE.Mesh(geometry, material));
+
+
+  //   // console.log(this.data);
+  // }
+});
 
