@@ -31,6 +31,17 @@ app.use(function (req, res, next) {
 app.get("/", function(req, res) {
   res.render('index');
 });
+app.get("/0.2.0", function(req, res) {
+  res.render('index2');
+});
+
+app.get("/0.3.0", function(req, res) {
+  res.render('index3');
+});
+
+app.get("/0.3.2", function(req, res) {
+  res.render('index32');
+});
 
 
 

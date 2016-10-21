@@ -2,7 +2,24 @@
 $(function() {
    console.log("hello js");
    initSockets();
+   // registerAll();
+
+
+
+var box = document.querySelector('#bob');
+
+
+
+
 });
+
+
+
+
+
+
+
+
 
 // SOCKET.IO
 function initSockets(){
@@ -34,43 +51,40 @@ function initSockets(){
 }
 
 ///VR shizzle
-var clap = document.querySelector('[sound]');
-
-
-var box = document.querySelector('a-box');
-
-function setPos (x,y,z) {
-  box.setAttribute('position', {
+// var clap = document.querySelector('[sound]');
+function setPos (x,y,z,entity) {
+  entity.setAttribute('position', {
     x: x,
     y: y,
     z: z
   });
-  clap.setAttribute('position', {
-    x: x,
-    y, y,
-    z, z
-  });
-  clap.components.sound.play();
+  // clap.setAttribute('position', {
+  //   x: x,
+  //   y, y,
+  //   z, z
+  // });
+  // clap.components.sound.play();
 }
+
 
 var bass1 = {
   size: 8
 
 }
 
-$(document).keypress(function(e) {
-  console.log(e);
-  console.log(String.fromCharCode(e.which));
-});
+// $(document).keypress(function(e) {
+//   console.log(e);
+//   console.log(String.fromCharCode(e.which));
+// });
 ///chinese joypadkeyboard geeft geen keyboard codes weer...
 
 
 /// 8 objects can be placed and moved 
 
 
-$("#happy-face").append("<a-entity mixin='red' line='path: 1 1 0, 1 0.5 0, 1 0 0'>")
-$("#happy-face").append("<a-entity multiLines='multisize: 40'>")
-$("#happy-face").append("<a-entity multiBoxes='multisize: 40'>")
+// $("#happy-face").append("<a-entity mixin='red' line='path: 1 1 0, 1 0.5 0, 1 0 0'>")
+// $("#happy-face").append("<a-entity line='path: 1 1 0, 1 5 0, 1 0 0'>")
+
 
 
 
